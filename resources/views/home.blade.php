@@ -16,26 +16,22 @@
                     @endif
 
                     <div class="row">
-                        <div class="col-sm-9">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">My Name:</h5>
-                                    <p class="card-text">{{ Auth::user()->username }}</p>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Reserves Total:</h5>
-                                    <p class="card-text">0</p>
-                                </div>
+                        <div class="col-8">
+                            <div class="card-body">
+                                <h5 class="card-title">My Name:</h5>
+                                <p class="card-text">{{ Auth::user()->username }}</p>
                             </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <img src="/img/user.png" class="card-img-top" alt="...">
-                                    </div>
-                                </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Reserves Total:</h5>
+                                <p class="card-text">0</p>
                             </div>
                         </div>
+                        <div class="col">
+                            <div class="card-body">
+                                <img src="/img/user.png" class="rounted" alt="...">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             {{-- Table booking --}}
@@ -51,11 +47,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
+                            {{-- @if (count($books_reserver) > 0)
+                                @foreach ($books_reserver as $book)
+                                    <tr>
+                                        <td>
+                                            <a href={{route('show_book',['id' => $book->id])}}>{{$book->title}}</a>
+                                        </td>
+                                        <td>{{$book->author}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif --}}
                         </tbody>
                     </table>
                 </div>

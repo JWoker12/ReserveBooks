@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/books', [App\Http\Controllers\HomeController::class, 'listBooks'])->name('books');
-Route::get('/book/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('show_book');
+Route::get('/book/{id}', [App\Http\Controllers\HomeController::class, 'showBook'])->name('show_book');
 Route::post('/reserve/{id}', [App\Http\Controllers\HomeController::class, 'reserve'])->name('reserve');

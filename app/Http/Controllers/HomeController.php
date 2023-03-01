@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Books;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -26,21 +28,29 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $reservers = Booking::select('book_id')
+            ->where('user_id', Auth::user()->id)
+            ->get();
+        return view('home')
+            ->with('reservers', $reservers);
     }
 
     public function listBooks(){
-        $books = DB::table('books')->get();
-        $categories = DB::table('category')->get();
+        Booking::where('date_delivery', '>=', date('Y/m/d'))
+            ->delete();
+        $books = Books::all();
+        $categories = Category::all();
         return view('books')
             ->with('categories', $categories)
             ->with('books', $books);
     }
 
-    public function show(Request $request){
+    public function showBook(Request $request){
         $id = $request->route('id');
-        $data = DB::table('books')->where('id', $id)->first();
-        return view('book')->with('data', $data);
+        $data = Books::where('id', $id)
+            ->first();
+        return view('book')
+            ->with('data', $data);
     }
 
     public function reserve(Request $request){
