@@ -13,8 +13,8 @@
                         <div class="col-sm-6">
                             Description: {{$data->decription}}
                         </div>
-                        <div class="col-sm-3">
-                            <img src="/img/user.png" class="card-img-top" alt="...">
+                        <div class="col justify-content-center">
+                            <img src="/img/user.png" class="mx-auto d-block" alt="...">
                         </div>
                     </div>
                     <hr>
