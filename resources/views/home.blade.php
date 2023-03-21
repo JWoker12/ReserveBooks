@@ -23,7 +23,7 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Reserves Total:</h5>
-                                <p class="card-text">0</p>
+                                <p class="card-text">{{$reservers->count()}}</p>
                             </div>
                         </div>
                         <div class="col">
@@ -47,19 +47,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @if (count($books_reserver) > 0)
-                                @foreach ($books_reserver as $book)
+                            @if ($reservers->count() != 0)
+                                @foreach ($reservers as $books)
                                     <tr>
                                         <td>
-                                            <a href={{route('show_book',['id' => $book->id])}}>{{$book->title}}</a>
+                                            {{$books->book->title}}
                                         </td>
-                                        <td>{{$book->author}}</td>
+                                        <td>
+                                            {{$books->book->author}}
+                                        </td>
                                         <td>
                                             <button type="button" class="btn btn-danger">Delete</button>
                                         </td>
                                     </tr>
                                 @endforeach
-                            @endif --}}
+                            @else
+                                <tr>
+                                    <td colspan="3">
+                                        No Data
+                                    </td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>

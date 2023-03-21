@@ -19,6 +19,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        Booking::where('date_delivery', '<=', date('Y/m/d'))
+            ->delete();
     }
 
     /**
@@ -28,16 +30,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $reservers = Booking::select('book_id')
-            ->where('user_id', Auth::user()->id)
-            ->get();
+        $reservers = Booking::with('book')->get('book_id');
+        
         return view('home')
             ->with('reservers', $reservers);
     }
 
     public function listBooks(){
-        Booking::where('date_delivery', '>=', date('Y/m/d'))
-            ->delete();
         $books = Books::all();
         $categories = Category::all();
         return view('books')
